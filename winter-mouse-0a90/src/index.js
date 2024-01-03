@@ -8,8 +8,33 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+const KV_NAMESPACE = 'cf01';
+
+const fetch = async (request, env, ctx) => {
+	try {
+		const value = await handleKV(env);
+		if (value === null) {
+			return new Response('Value not found', { status: 404 });
+		}
+		return new Response(value);
+	} catch (error) {
+		console.error(`KV returned error: ${error}`);
+		// return new Response('Hello Worker!');
+		return new Response(err, { status: 500 });
+	}
+};
+
+const scheduled = (event) => {};
+
+const handleKV = async (env) => {
+	await env[KV_NAMESPACE].put('foo3', 'bar3ss');
+
+	const value = await env[KV_NAMESPACE].get('foo3');
+
+	return value;
+};
+
 export default {
-	async fetch(request, env, ctx) {
-		return new Response('Hello World!');
-	},
+	fetch,
+	scheduled,
 };
