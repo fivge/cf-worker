@@ -17,7 +17,18 @@ yarn wrangler kv:key get --namespace-id=XXXXID "fooo"
 ```
 
 ```bash
-wrangler dev --remote
+# 本地使用远程kv
+yarn wrangler dev --remote
+```
+
+## 0x03 runtime-apis
+
+### 1. scheduled
+
+```bash
+yarn wrangler dev --test-scheduled
+
+curl "http://localhost:8787/__scheduled?cron=*+*+*+*+*"
 ```
 
 ---
