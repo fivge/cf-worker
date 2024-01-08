@@ -12,10 +12,11 @@ KV_KEY = "cf01"
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
 [[kv_namespaces]]
 binding = "cf01"
-id = ""
+id = "5203390fde3d4e6fa3fda70735abbc74"
 
 [triggers]
-crons = ["0 */2 * * *"]
+# crons = ["0 */2 * * *"]
+crons = ["2 0/2 2,3,4,5 * *"]
 
 # Bind an R2 Bucket. Use R2 to store arbitrarily large blobs of data, such as files.
 # Docs: https://developers.cloudflare.com/r2/api/workers/workers-api-usage/
